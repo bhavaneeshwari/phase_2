@@ -39,14 +39,14 @@ int main(void)
 
         xil_printf("\r\n>> ");
         
-        uart_getline(cmd_buf, sizeof(cmd_buf));
+        uart_getline(cmd_buf, sizeof(cmd_buf)); //uart_driver
         
         if (!strcmp(cmd_buf, "HELP") || !strcmp(cmd_buf, "help")) {
             print_help();
             continue;
         }
         
-        parse_and_store(cmd_buf);
+        parse_and_store(cmd_buf);// read the arguments -> write in axi regs 
         
         while (1) {
             executor_poll();
