@@ -38,7 +38,6 @@ void api_read_handler(void)
     addr = REG_ADDRESS_READ();
     xil_printf("\r\nReading from dummy_mem[0x%02x]\r\n", addr & 0xFF);
     
-    /* Perform read operation */
     data = dummy_mem[addr & 0xFF];
     
     REG_DATA_WRITE(data);
@@ -113,7 +112,6 @@ void api_array_read_handler(void)
     xil_printf("\r\nReading %d elements from dummy_mem starting at 0x%02x\r\n", 
                count, addr & 0xFF);
     
-    /* Copy array data from memory to registers */
     for (i = 0; i < count; i++) {
         u32 array_val = dummy_mem[(addr + i) & 0xFF];
         REG_ARRAY_WRITE(i, array_val);
@@ -136,12 +134,11 @@ void api_dump_memory_handler(void)
     start_addr = REG_ADDRESS_READ();
     count = REG_DATA_READ();
     
-    if (count > 32) count = 32; /* Limit dump size */
+    if (count > 32) count = 32; 
     
     xil_printf("\r\nDumping %d locations from dummy_mem[0x%02x]:\r\n", 
                count, start_addr & 0xFF);
     xil_printf("Addr   Value\r\n");
-    xil_printf("----   ----------\r\n");
     
     for (i = 0; i < count; i++) {
         u32 addr = (start_addr + i) & 0xFF;
