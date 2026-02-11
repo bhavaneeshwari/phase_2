@@ -33,7 +33,7 @@ void executor_poll(void)
         } else {
           
             xil_printf("[EXECUTOR] ERROR: Invalid function ID %d\r\n", func_id);
-            REG_DATA_WRITE(0xDEADBEEF);
+            REG_DATA_WRITE(0xffffffff);
         }
         
       
