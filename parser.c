@@ -4,7 +4,6 @@
 #include "xil_printf.h"
 #include <string.h>
 
-/* Parse hexadecimal string into u32 */
 u32 parse_hex(const char *s)
 {
     u32 val = 0;
@@ -39,7 +38,6 @@ void parse_and_store(char *cmd)
     if (!tok)
         return;
 
-    /* Command: READ <address> */
     if (!strcmp(tok, "READ")) {
         addr = parse_hex(strtok(NULL, " "));
         
@@ -48,15 +46,15 @@ void parse_and_store(char *cmd)
         xil_printf("  REG_ADDRESS (0x%02x) = 0x%08x\r\n", REG_ADDRESS, addr);
         
         REG_ADDRESS_WRITE(addr);
-        REG_DATA_WRITE(0);  /* Clear data register */
+        REG_DATA_WRITE(0);  
         
-        /* Issue command with function ID and START status */
+        
         REG_COMMAND_WRITE(MAKE_COMMAND(FUNC_READ, STATUS_START));
         xil_printf("  REG_COMMAND (0x%02x) = 0x%08x (Func=%d, Status=START)\r\n", 
                    REG_COMMAND, MAKE_COMMAND(FUNC_READ, STATUS_START), FUNC_READ);
     }
     
-    /* Command: WRITE <address> <data> */
+
     else if (!strcmp(tok, "WRITE")) {
         addr = parse_hex(strtok(NULL, " "));
         data = parse_hex(strtok(NULL, " "));
@@ -69,13 +67,13 @@ void parse_and_store(char *cmd)
         REG_ADDRESS_WRITE(addr);
         REG_DATA_WRITE(data);
         
-        /* Issue command */
+        
         REG_COMMAND_WRITE(MAKE_COMMAND(FUNC_WRITE, STATUS_START));
         xil_printf("  REG_COMMAND (0x%02x) = 0x%08x (Func=%d, Status=START)\r\n", 
                    REG_COMMAND, MAKE_COMMAND(FUNC_WRITE, STATUS_START), FUNC_WRITE);
     }
     
-    /* Command: ARRAY_WRITE <address> <count> <data0> <data1> ... */
+  
     else if (!strcmp(tok, "ARRAY_WRITE")) {
         addr = parse_hex(strtok(NULL, " "));
         array_count = parse_hex(strtok(NULL, " "));
@@ -94,7 +92,7 @@ void parse_and_store(char *cmd)
         REG_ADDRESS_WRITE(addr);
         REG_DATA_WRITE(array_count);
         
-        /* Parse and write array elements */
+        
         for (i = 0; i < array_count; i++) {
             data = parse_hex(strtok(NULL, " "));
             REG_ARRAY_WRITE(i, data);
@@ -102,14 +100,14 @@ void parse_and_store(char *cmd)
                        i, REG_ARRAY_0 + (i * 4), data);
         }
         
-        /* Issue command */
+  
         REG_COMMAND_WRITE(MAKE_COMMAND(FUNC_ARRAY_WRITE, STATUS_START));
         xil_printf("  REG_COMMAND (0x%02x) = 0x%08x (Func=%d, Status=START)\r\n", 
                    REG_COMMAND, MAKE_COMMAND(FUNC_ARRAY_WRITE, STATUS_START), 
                    FUNC_ARRAY_WRITE);
     }
     
-    /* Command: ARRAY_READ <address> <count> */
+   
     else if (!strcmp(tok, "ARRAY_READ")) {
         addr = parse_hex(strtok(NULL, " "));
         array_count = parse_hex(strtok(NULL, " "));
@@ -126,14 +124,14 @@ void parse_and_store(char *cmd)
         REG_ADDRESS_WRITE(addr);
         REG_DATA_WRITE(array_count);
         
-        /* Issue command */
+      
         REG_COMMAND_WRITE(MAKE_COMMAND(FUNC_ARRAY_READ, STATUS_START));
         xil_printf("  REG_COMMAND (0x%02x) = 0x%08x (Func=%d, Status=START)\r\n", 
                    REG_COMMAND, MAKE_COMMAND(FUNC_ARRAY_READ, STATUS_START), 
                    FUNC_ARRAY_READ);
     }
     
-    /* Command: DUMP <address> <count> */
+
     else if (!strcmp(tok, "DUMP")) {
         addr = parse_hex(strtok(NULL, " "));
         data = parse_hex(strtok(NULL, " "));
@@ -145,8 +143,7 @@ void parse_and_store(char *cmd)
         
         REG_ADDRESS_WRITE(addr);
         REG_DATA_WRITE(data);
-        
-        /* Issue command */
+      
         REG_COMMAND_WRITE(MAKE_COMMAND(FUNC_DUMP_MEMORY, STATUS_START));
         xil_printf("  REG_COMMAND (0x%02x) = 0x%08x (Func=%d, Status=START)\r\n", 
                    REG_COMMAND, MAKE_COMMAND(FUNC_DUMP_MEMORY, STATUS_START), 
