@@ -43,8 +43,8 @@
 #define GET_STATUS(cmd_val)    ((cmd_val) & CMD_STATUS_MASK)
 #define GET_FUNC_ID(cmd_val)   (((cmd_val) & CMD_FUNC_ID_MASK) >> CMD_FUNC_ID_SHIFT)
 
-#define MAKE_COMMAND(func_id, status) \
-    ((((func_id) << CMD_FUNC_ID_SHIFT) & CMD_FUNC_ID_MASK) | \
+#define MAKE_COMMAND(func_id, status) 
+    ((((func_id) << CMD_FUNC_ID_SHIFT) & CMD_FUNC_ID_MASK) | 
      (((status) << CMD_STATUS_SHIFT) & CMD_STATUS_MASK))
 #define REG_ADDRESS_WRITE(v)   REG_WRITE(REG_ADDRESS, v)
 #define REG_ADDRESS_READ()     REG_READ(REG_ADDRESS)
