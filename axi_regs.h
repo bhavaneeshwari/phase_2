@@ -31,10 +31,10 @@
 #define STATUS_EXEC        2
 #define STATUS_DONE        3
 
-#define REG_WRITE(offset, val) \
+#define REG_WRITE(offset, val) 
     Xil_Out32(CMD_BASE_ADDR + (offset), (u32)(val))
 
-#define REG_READ(offset) \
+#define REG_READ(offset) 
     Xil_In32(CMD_BASE_ADDR + (offset))
 
 #define REG_COMMAND_WRITE(v)   REG_WRITE(REG_COMMAND, v)
