@@ -1,0 +1,126 @@
+/*
+
+Xilinx Vivado v2018.3 (64-bit) [Major: 2018, Minor: 3]
+SW Build: 2405991 on Thu Dec  6 23:36:41 MST 2018
+IP Build: 2404404 on Fri Dec  7 01:43:56 MST 2018
+
+Process ID (PID): 125373
+License: Customer
+
+Current time: 	Mon Feb 23 12:04:39 IST 2026
+Time zone: 	India Standard Time (Asia/Kolkata)
+
+OS: Red Hat Enterprise Linux release 8.10 (Ootpa)
+OS Version: 4.18.0-553.el8_10.x86_64
+OS Architecture: amd64
+Available processors (cores): 24
+
+Display: :0
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 51 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	9.0.4 64-bit
+Java home: 	/home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4
+Java executable location: 	/home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	vlsiuser
+User home directory: /home/vlsiuser
+User working directory: /home/vlsiuser/phase2/week12
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /home/vlsiuser/SMDP/Xilinx/Vivado
+HDI_APPROOT: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3
+RDI_DATADIR: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/data
+RDI_BINDIR: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/bin
+
+Vivado preferences file location: /home/vlsiuser/.Xilinx/Vivado/2018.3/vivado.xml
+Vivado preferences directory: /home/vlsiuser/.Xilinx/Vivado/2018.3/
+Vivado layouts directory: /home/vlsiuser/.Xilinx/Vivado/2018.3/layouts
+PlanAhead jar file location: 	/home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/lib/classes/planAhead.jar
+Vivado log file location: 	/home/vlsiuser/phase2/week12/vivado.log
+Vivado journal file location: 	/home/vlsiuser/phase2/week12/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-125373-psgvlsi-23.psgtech.ac.in
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2100@14.139.1.126
+XILINX_DSP: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINX_PLANAHEAD: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3
+XILINX_SDK: /home/vlsiuser/SMDP/Xilinx/SDK/2018.3
+XILINX_VIVADO: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3
+XILINX_VIVADO_HLS: /home/vlsiuser/SMDP/Xilinx/Vivado/2018.3
+
+
+GUI allocated memory:	258 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,145 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/vlsiuser/phase2/week12/week12.xpr", 0); // q (Q, cp)
+// [GUI Memory]: 100 MB (+102480kb) [00:00:03]
+// [Engine Memory]: 1,026 MB (+924813kb) [00:00:03]
+// Opening Vivado Project: /home/vlsiuser/phase2/week12/week12.xpr. Version: Vivado v2018.3 
+// bx (cp):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project /home/vlsiuser/phase2/week12/week12.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 1,229 MB (+158504kb) [00:00:05]
+// [GUI Memory]: 111 MB (+6129kb) [00:00:06]
+// [GUI Memory]: 117 MB (+667kb) [00:00:06]
+// WARNING: HEventQueue.dispatchEvent() is taking  1107 ms.
+// Tcl Message: open_project /home/vlsiuser/phase2/week12/week12.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vlsiuser/phase2/week11/reg_ip/ip_repo'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,265 MB. GUI used memory: 65 MB. Current time: 2/23/26, 12:04:41 PM IST
+// Project name: week12; location: /home/vlsiuser/phase2/week12; part: xc7a100tcsg324-1
+// [Engine Memory]: 1,596 MB (+320308kb) [00:00:07]
+dismissDialog("Open Project"); // bx (cp)
+// [Engine Memory]: 1,949 MB (+286074kb) [00:00:08]
+// [GUI Memory]: 126 MB (+2774kb) [00:00:10]
+// Tcl Message: update_compile_order -fileset sources_1 
+// Run Command: PAResourceCommand.PACommandNames_LAUNCH_HARDWARE
+// aa (cp): Launch SDK: addNotify
+// Elapsed time: 10 seconds
+setText("RDIResource.SearchCommandComponent_QUICK_ACCESS", "Launch SDK"); // OverlayTextField (K, cp)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (aa)
+dismissDialog("Launch SDK"); // aa (cp)
+// Tcl Message: launch_sdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf 
+// Tcl Message: INFO: [Vivado 12-393] Launching SDK... INFO: [Vivado 12-417] Running xsdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf INFO: [Vivado 12-3157] SDK launch initiated. Please check console for any further messages. 
+// Run Command: PAResourceCommand.PACommandNames_LAUNCH_HARDWARE
+// aa (cp): Launch SDK: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (aa)
+dismissDialog("Launch SDK"); // aa (cp)
+// Tcl Message: launch_sdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf 
+// Tcl Message: INFO: [Vivado 12-393] Launching SDK... INFO: [Vivado 12-417] Running xsdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf INFO: [Vivado 12-3157] SDK launch initiated. Please check console for any further messages. 

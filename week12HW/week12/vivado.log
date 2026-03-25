@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Mon Feb 23 12:04:32 2026
+# Process ID: 125373
+# Current directory: /home/vlsiuser/phase2/week12
+# Command line: vivado
+# Log file: /home/vlsiuser/phase2/week12/vivado.log
+# Journal file: /home/vlsiuser/phase2/week12/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/vlsiuser/phase2/week12/week12.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/vlsiuser/phase2/week11/reg_ip/ip_repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/vlsiuser/SMDP/Xilinx/Vivado/2018.3/data/ip'.
+update_compile_order -fileset sources_1
+launch_sdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf
+INFO: [Vivado 12-393] Launching SDK...
+INFO: [Vivado 12-417] Running xsdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf
+INFO: [Vivado 12-3157] SDK launch initiated. Please check console for any further messages.
+launch_sdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf
+INFO: [Vivado 12-393] Launching SDK...
+INFO: [Vivado 12-417] Running xsdk -workspace /home/vlsiuser/phase2/week12/week12.sdk -hwspec /home/vlsiuser/phase2/week12/week12.sdk/hw_block_ddr_wrapper.hdf
+INFO: [Vivado 12-3157] SDK launch initiated. Please check console for any further messages.

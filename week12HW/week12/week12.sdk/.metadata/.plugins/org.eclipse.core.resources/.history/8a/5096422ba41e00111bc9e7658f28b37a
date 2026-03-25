@@ -1,0 +1,167 @@
+#include <string.h>
+#include "mapper.h"
+#include "../core_logic/afe_drivers.h"
+#include "../axi_regs.h"
+
+/* ------------------------------------------------------------------ */
+/*  generic arg writer — reads arg_types from descriptor               */
+/*  writes each arg into OPERAND reg space based on its type           */
+/* ------------------------------------------------------------------ */
+static u32 write_operands(funcSpec *spec, void **args)
+{
+    u32 offset = 0;
+
+    for (int i = 0; i < spec->num_args; i++) {
+
+        switch (spec->arg_types[i]) {
+
+            case ARG_U8: {
+                u8 val = *(u8 *)args[i];
+                memcpy(OPERAND_PTR + offset, &val, sizeof(val));
+                offset += sizeof(val);
+                break;
+            }
+
+            case ARG_U16: {
+                u16 val = *(u16 *)args[i];
+                memcpy(OPERAND_PTR + offset, &val, sizeof(val));
+                offset += sizeof(val);
+                break;
+            }
+
+            case ARG_U8_PTR: {
+                /* size always comes from the next arg */
+                u16  size = *(u16 *)args[i + 1];
+                u8  *data =  (u8 *)args[i];
+                memcpy(OPERAND_PTR + offset, data, size);
+                offset += size;
+                break;
+            }
+        }
+    }
+    return offset;
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiRawWrite                                                      */
+/* descriptor: num_args=3  arg_types={ARG_U8, ARG_U16, ARG_U8}        */
+/* OPERAND   : [afeInst:1B][addr:2B][data:1B]                          */
+/* ------------------------------------------------------------------ */
+void map_spiRawWrite(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  afeInst = *(u8 *)args[0];
+    u16 addr    = *(u16*)args[1];
+    u8  data    = *(u8 *)args[2];
+
+    afeSpiRawWrite(afeInst, addr, data);
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiRawRead                                                        */
+/* descriptor: num_args=2  arg_types={ARG_U8, ARG_U16}                 */
+/* OPERAND   : [afeInst:1B][addr:2B]                                    */
+/* RESULT    : [readVal:1B]                                             */
+/* ------------------------------------------------------------------ */
+void map_spiRawRead(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  afeInst = *(u8 *)args[0];
+    u16 addr    = *(u16*)args[1];
+    u8  readVal = 0;
+
+    afeSpiRawRead(afeInst, addr, &readVal);
+
+    memcpy(RESULT_PTR, &readVal, sizeof(readVal));
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiBurstWrite                                                     */
+/* descriptor: num_args=4  {ARG_U8, ARG_U16, ARG_U8_PTR, ARG_U16}    */
+/* OPERAND   : [afeInst:1B][addr:2B][size:2B][data:nB]                 */
+/* ------------------------------------------------------------------ */
+void map_spiBurstWrite(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  afeInst = *(u8 *)args[0];
+    u16 addr    = *(u16*)args[1];
+    u8 *data    =  (u8 *)args[2];
+    u16 size    = *(u16*)args[3];
+
+    afeSpiBurstWrite(afeInst, addr, data, size);
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiBurstRead                                                      */
+/* descriptor: num_args=3  {ARG_U8, ARG_U16, ARG_U16}                 */
+/* OPERAND   : [afeInst:1B][addr:2B][size:2B]                          */
+/* RESULT    : [data:nB]                                                */
+/* ------------------------------------------------------------------ */
+void map_spiBurstRead(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  afeInst = *(u8 *)args[0];
+    u16 addr    = *(u16*)args[1];
+    u16 size    = *(u16*)args[2];
+
+    static u8 data[MAX_ARG_N];
+    afeSpiBurstRead(afeInst, addr, size, data);
+
+    memcpy(RESULT_PTR, data, size);
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiRawWriteMulti                                                  */
+/* descriptor: num_args=3  {ARG_U8, ARG_U16, ARG_U8}                  */
+/* OPERAND   : [sel:1B][addr:2B][data:1B]                               */
+/* ------------------------------------------------------------------ */
+void map_spiRawWriteMulti(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  sel  = *(u8 *)args[0];
+    u16 addr = *(u16*)args[1];
+    u8  data = *(u8 *)args[2];
+
+    afeSpiRawWriteMulti(sel, addr, data);
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiRawReadMulti                                                   */
+/* descriptor: num_args=2  {ARG_U8, ARG_U16}                           */
+/* OPERAND   : [sel:1B][addr:2B]                                        */
+/* RESULT    : [readVal:NUM_SPI bytes]                                  */
+/* ------------------------------------------------------------------ */
+void map_spiRawReadMulti(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  sel  = *(u8 *)args[0];
+    u16 addr = *(u16*)args[1];
+
+    static u8 readVal[NUM_SPI];
+    afeSpiRawReadMulti(sel, addr, readVal);
+
+    memcpy(RESULT_PTR, readVal, NUM_SPI);
+}
+
+/* ------------------------------------------------------------------ */
+/* map_spiBurstWriteMulti                                                */
+/* descriptor: num_args=4  {ARG_U8, ARG_U16, ARG_U8_PTR, ARG_U16}    */
+/* OPERAND   : [sel:1B][addr:2B][size:2B][data:nB]                     */
+/* ------------------------------------------------------------------ */
+void map_spiBurstWriteMulti(funcSpec *spec, void **args)
+{
+    write_operands(spec, args);
+
+    u8  sel  = *(u8 *)args[0];
+    u16 addr = *(u16*)args[1];
+    u8 *data =  (u8 *)args[2];
+    u16 size = *(u16*)args[3];
+
+    afeSpiBurstWriteMulti(sel, addr, data, size);
+}

@@ -1,0 +1,25 @@
+#include "regs_map.h"
+#include"xil_types.h"
+#include "core_logic/api.h"
+#include "user_logic/uart_driver.h"
+#include "user_logic/parser.h"
+int main()
+
+{ char buf[128];
+	while (1)
+    {
+        /* Print prompt */
+        uart_sendstr("> ");
+
+        /* Wait for a full line from the terminal */
+        int len = uart_getline(buf, CMD_BUF_SIZE);
+
+        /* Ignore empty lines */
+        if (len == 0) continue;
+
+        /* Parse and dispatch */
+        parse_and_store(buf);
+    }
+
+    return 0;
+}

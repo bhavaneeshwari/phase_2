@@ -1,0 +1,41 @@
+09:52:03 **** Build of configuration Debug for project app12 ****
+make all 
+Building file: ../src/user_logic/uart_driver.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/user_logic/uart_driver.o" -I../../app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/user_logic/uart_driver.d" -MT"src/user_logic/uart_driver.o" -o "src/user_logic/uart_driver.o" "../src/user_logic/uart_driver.c"
+Finished building: ../src/user_logic/uart_driver.c
+ 
+Building file: ../src/user_logic/uart_parser.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/user_logic/uart_parser.o" -I../../app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/user_logic/uart_parser.d" -MT"src/user_logic/uart_parser.o" -o "src/user_logic/uart_parser.o" "../src/user_logic/uart_parser.c"
+Finished building: ../src/user_logic/uart_parser.c
+ 
+Building file: ../src/core_logic/demapper.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/core_logic/demapper.o" -I../../app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/core_logic/demapper.d" -MT"src/core_logic/demapper.o" -o "src/core_logic/demapper.o" "../src/core_logic/demapper.c"
+Finished building: ../src/core_logic/demapper.c
+ 
+Building file: ../src/core_logic/wrapper_fns.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/core_logic/wrapper_fns.o" -I../../app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/core_logic/wrapper_fns.d" -MT"src/core_logic/wrapper_fns.o" -o "src/core_logic/wrapper_fns.o" "../src/core_logic/wrapper_fns.c"
+Finished building: ../src/core_logic/wrapper_fns.c
+ 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: app12.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../app12_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "app12.elf"  ./src/user_logic/uart_driver.o ./src/user_logic/uart_parser.o  ./src/core_logic/demapper.o ./src/core_logic/wrapper_fns.o  ./src/api.o ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: app12.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size app12.elf  |tee "app12.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 108632	   2900	   3268	 114800	  1c070	app12.elf
+Finished building: app12.elf.size
+ 
+
+09:52:03 Build Finished (took 155ms)
+

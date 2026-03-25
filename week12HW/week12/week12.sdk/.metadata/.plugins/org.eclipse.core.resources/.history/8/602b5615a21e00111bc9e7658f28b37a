@@ -1,0 +1,26 @@
+/*
+ * mapper.h
+ *
+ *  Created on: Mar 13, 2026
+ *      Author: vlsiuser
+ */
+
+#ifndef SRC_USER_LOGIC_MAPPER_H_
+#define SRC_USER_LOGIC_MAPPER_H_
+#include <stdint.h>
+#include "xil_types.h"
+#include "parser.h"
+#include "../axi_regs.h"
+
+#ifndef NUM_SPI
+#define NUM_SPI      4
+#endif
+void map_spiRawWrite       (arg_type_t *args, uint8_t *reg_space);
+void map_spiRawRead        (arg_list_t *args, uint8_t *reg_space);
+void map_spiBurstWrite     (arg_list_t *args, uint8_t *reg_space);
+void map_spiBurstRead      (arg_list_t *args, uint8_t *reg_space);
+void map_spiRawWriteMulti  (arg_list_t *args, uint8_t *reg_space);
+void map_spiRawReadMulti   (arg_list_t *args, uint8_t *reg_space);
+void map_spiBurstWriteMulti(arg_list_t *args, uint8_t *reg_space);
+
+#endif /* SRC_USER_LOGIC_MAPPER_H_ */

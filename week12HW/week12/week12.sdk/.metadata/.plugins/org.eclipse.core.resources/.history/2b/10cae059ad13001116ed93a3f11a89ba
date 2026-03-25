@@ -1,0 +1,25 @@
+#include "regs_map.h"
+#include"xil_types.h"
+#include "core_logic/api.h"
+#include "user_logic/uart_driver.h"
+#include "user_logic/parser.h"
+int main()
+
+{ uart_init();
+	u16 addr;
+    u8 afe;
+    u8 data;
+    u32 res;
+	//REG_32IP_myWrite(OP_OFF_AFE_INST,3);
+    REG_8IP_myWrite(OP_OFF_AFE_INST,3);
+    REG_16IP_myWrite(OP_OFF_ADDR,0x3456);
+
+	REG_8IP_myWrite(OP_OFF_DATA_SCALAR,0x11);
+
+	addr= REG_16IP_myRead(OP_OFF_ADDR);
+	afe= REG_8IP_myRead(OP_OFF_AFE_INST);
+	data= REG_8IP_myRead(OP_OFF_DATA_SCALAR);
+	res= afeSpiRawWrite(afe,  addr,  data);
+	 uart_sendhex( res);
+	return res;
+}

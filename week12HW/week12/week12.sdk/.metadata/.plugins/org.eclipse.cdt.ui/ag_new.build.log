@@ -1,0 +1,21 @@
+17:15:19 **** Auto Build of configuration Debug for project ag_new ****
+make all 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../ag_new_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: ag_new.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ag_new_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "ag_new.elf"  ./src/user_logic/command_dict.o ./src/user_logic/parser.o ./src/user_logic/uart.o  ./src/core_logic/afe_drivers.o ./src/core_logic/api_wrapper.o ./src/core_logic/executor.o  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: ag_new.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size ag_new.elf  |tee "ag_new.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  24792	   1404	   3252	  29448	   7308	ag_new.elf
+Finished building: ag_new.elf.size
+ 
+
+17:15:19 Build Finished (took 106ms)
+

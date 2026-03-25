@@ -1,0 +1,28 @@
+/*
+ * func_desc.c
+ *
+ *  Created on: Mar 13, 2026
+ *      Author: vlsiuser
+ */
+
+
+#include <string.h>
+#include "func_desc.h"
+#include "mapper.h"
+func_desc_t FUNC_TABLE[] =
+{ {"spiRawWrite",OPCODE_RAW_WRITE,3,{ ARG_U8, ARG_U16, ARG_U8 },map_spiRawWrite},
+  {"spiRawRead",OPCODE_RAW_READ,2,{ ARG_U8, ARG_U16, ARG_U8_PTR },map_spiRawRead},
+  {"spiBurstWrite",OPCODE_BURST_WRITE,3, { ARG_U8, ARG_U16, ARG_U16, ARG_U8_PTR },map_spiBurstWrite},
+  {"spiBurstRead",OPCODE_BURST_READ,3,{ ARG_U8, ARG_U16, ARG_U16, ARG_U8_PTR },map_spiBurstRead},
+  {"spiRawReadMulti",OPCODE_RAW_READ_MULTI,2,{ ARG_U8, ARG_U16, ARG_U8_PTR },map_spiRawReadMulti},
+  {"spiBurstWriteMulti",OPCODE_BURST_WRITE_MULTI,3, { ARG_U8, ARG_U16, ARG_U16, ARG_U8_PTR },map_spiBurstWriteMulti},
+
+};
+const func_desc_t *lookup_by_opcode(spi_opcode_t opcode)
+{
+    for (size_t i = 0; i < FUNC_TABLE_LEN; i++) {
+        if (FUNC_TABLE[i].opcode == opcode)
+            return &FUNC_TABLE[i];
+    }
+    return NULL;
+}

@@ -1,0 +1,41 @@
+09:52:05 **** Build of configuration Debug for project gapp ****
+make all 
+Building file: ../src/api.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/api.o" -I../../gapp_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/api.d" -MT"src/api.o" -o "src/api.o" "../src/api.c"
+Finished building: ../src/api.c
+ 
+Building file: ../src/executor.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/executor.o" -I../../gapp_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/executor.d" -MT"src/executor.o" -o "src/executor.o" "../src/executor.c"
+Finished building: ../src/executor.c
+ 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../gapp_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/parser.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/parser.o" -I../../gapp_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/parser.d" -MT"src/parser.o" -o "src/parser.o" "../src/parser.c"
+Finished building: ../src/parser.c
+ 
+Building file: ../src/uart.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/uart.o" -I../../gapp_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/uart.d" -MT"src/uart.o" -o "src/uart.o" "../src/uart.c"
+Finished building: ../src/uart.c
+ 
+Building target: gapp.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../gapp_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "gapp.elf"  ./src/api.o ./src/executor.o ./src/main.o ./src/parser.o ./src/uart.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: gapp.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size gapp.elf  |tee "gapp.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  21136	   1392	   4272	  26800	   68b0	gapp.elf
+Finished building: gapp.elf.size
+ 
+
+09:52:06 Build Finished (took 155ms)
+

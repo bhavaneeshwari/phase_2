@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;demapper.c, demapper.h, wrapper_fns.c, wrapper_fns.h&apos; to &apos;core_logic&apos;" description="Move 4 resources to &apos;core_logic&apos;" destination="src/core_logic" element1="src/demapper.c" element2="src/demapper.h" element3="src/wrapper_fns.c" element4="src/wrapper_fns.h" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="4" stamp="1771827148030" updateReferences="true"/>
+</session>

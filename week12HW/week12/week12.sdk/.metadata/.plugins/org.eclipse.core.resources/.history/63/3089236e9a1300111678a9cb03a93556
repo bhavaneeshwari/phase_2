@@ -1,0 +1,17 @@
+#include "regs_map.h"
+#include"xil_types.h"
+#include "core_logic/api.h"
+int main()
+{   u16 addr;
+    u8 afe;
+    u8 data;
+	//REG_32IP_myWrite(OP_OFF_AFE_INST,3);
+	REG_16IP_myWrite(OP_OFF_ADDR,0x3456);
+	REG_8IP_myWrite(OP_OFF_AFE_INST,3);
+	REG_8IP_myWrite(OP_OFF_DATA_SCALAR,0x11);
+
+	addr= REG_16IP_myRead(OP_OFF_ADDR);
+	afe= REG_8IP_myRead(OP_OFF_AFE_INST);
+	data= REG_8IP_myRead(OP_OFF_DATA_SCALAR);
+
+}

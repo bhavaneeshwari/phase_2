@@ -1,0 +1,45 @@
+#include "xparameters.h"
+#include "xil_types.h"
+#include "xil_io.h"
+#include "xuartlite.h"
+
+#define REG_BASE_ADDR  XPAR_REG_32IP_0_SREG_AXI_BASEADDR
+
+
+
+#define HW_OPERAND_BASE ((volatile u8 *)(REG_BASE_ADDR + 0x00))
+#define HW_RESULT_BASE  ((volatile u8 *)(REG_BASE_ADDR + 0x24))
+
+XUartLite Uart;
+
+
+extern char inbyte(void);
+
+void uart_init(void)
+{
+    XUartLite_Initialize(&Uart, XPAR_UARTLITE_0_DEVICE_ID);
+}
+void uart_getline(char *buffer, int max_len)
+{
+    int count = 0;
+    char c;
+
+    while (1) {
+        c = inbyte();
+
+        if (c == '\r' || c == '\n') {
+            buffer[count] = '\0';
+            xil_printf("\r\n");
+            break;
+        }
+        else if (c == '\b' || c == 0x7F) {
+            if (count > 0) {
+                count--;
+                xil_printf("\b \b");
+            }
+        }
+        else if (count < max_len - 1) {
+            buffer[count++] = c;
+        }
+    }
+}

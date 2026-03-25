@@ -1,0 +1,48 @@
+12:28:02 **** Auto Build of configuration Debug for project new_app12 ****
+make all 
+Building file: ../src/user_logic/func_table.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/user_logic/func_table.o" -I../../new_app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/user_logic/func_table.d" -MT"src/user_logic/func_table.o" -o "src/user_logic/func_table.o" "../src/user_logic/func_table.c"
+Finished building: ../src/user_logic/func_table.c
+ 
+Building file: ../src/user_logic/parser.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/user_logic/parser.o" -I../../new_app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/user_logic/parser.d" -MT"src/user_logic/parser.o" -o "src/user_logic/parser.o" "../src/user_logic/parser.c"
+../src/user_logic/parser.c: In function 'parse_and_store':
+../src/user_logic/parser.c:155:13: warning: this 'while' clause does not guard... [-Wmisleading-indentation]
+             while (REG_8IP_myRead(REG_COMMAND) == CMD_IDLE);
+             ^~~~~
+../src/user_logic/parser.c:156:13: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'while'
+             {   read_and_print_result(desc);}
+             ^
+Finished building: ../src/user_logic/parser.c
+ 
+Building file: ../src/user_logic/uart_driver.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/user_logic/uart_driver.o" -I../../new_app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/user_logic/uart_driver.d" -MT"src/user_logic/uart_driver.o" -o "src/user_logic/uart_driver.o" "../src/user_logic/uart_driver.c"
+Finished building: ../src/user_logic/uart_driver.c
+ 
+Building file: ../src/core_logic/executor.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/core_logic/executor.o" -I../../new_app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/core_logic/executor.d" -MT"src/core_logic/executor.o" -o "src/core_logic/executor.o" "../src/core_logic/executor.c"
+Finished building: ../src/core_logic/executor.c
+ 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../new_app12_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: new_app12.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../new_app12_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "new_app12.elf"  ./src/user_logic/func_table.o ./src/user_logic/parser.o ./src/user_logic/uart_driver.o  ./src/core_logic/executor.o ./src/core_logic/spiFuncDef.o  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: new_app12.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size new_app12.elf  |tee "new_app12.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  21576	   1372	   3252	  26200	   6658	new_app12.elf
+Finished building: new_app12.elf.size
+ 
+
+12:28:02 Build Finished (took 155ms)
+

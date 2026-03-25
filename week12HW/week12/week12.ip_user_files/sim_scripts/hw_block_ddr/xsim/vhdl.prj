@@ -1,0 +1,13 @@
+vhdl xil_defaultlib  \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_microblaze_0_0/sim/hw_block_ddr_microblaze_0_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_dlmb_v10_0/sim/hw_block_ddr_dlmb_v10_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_ilmb_v10_0/sim/hw_block_ddr_ilmb_v10_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_dlmb_bram_if_cntlr_0/sim/hw_block_ddr_dlmb_bram_if_cntlr_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_ilmb_bram_if_cntlr_0/sim/hw_block_ddr_ilmb_bram_if_cntlr_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_microblaze_0_axi_intc_0/sim/hw_block_ddr_microblaze_0_axi_intc_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_mdm_1_0/sim/hw_block_ddr_mdm_1_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_rst_clk_wiz_1_100M_0/sim/hw_block_ddr_rst_clk_wiz_1_100M_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_axi_uartlite_0_0/sim/hw_block_ddr_axi_uartlite_0_0.vhd" \
+"../../../bd/hw_block_ddr/ip/hw_block_ddr_rst_mig_7series_0_81M_0/sim/hw_block_ddr_rst_mig_7series_0_81M_0.vhd" \
+
+nosort

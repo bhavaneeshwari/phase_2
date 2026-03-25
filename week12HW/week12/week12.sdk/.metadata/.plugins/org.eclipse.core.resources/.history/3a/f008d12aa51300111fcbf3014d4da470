@@ -1,0 +1,83 @@
+
+#include <string.h>
+#include "parser.h"
+#include "../regs_map.h"
+#include "../debug.h"
+static u32 parse_hex(const char *s)
+{
+    u32 val = 0;
+    if (!s) return 0;
+
+    while (*s == ' ' || *s == '\t') s++;
+
+    if (s[0] == '0' && (s[1] == 'x' || s[1] == 'X'))
+        s += 2;
+
+    while (*s) {
+        if      (*s >= '0' && *s <= '9') val = (val << 4) | (*s - '0');
+        else if (*s >= 'A' && *s <= 'F') val = (val << 4) | (*s - 'A' + 10);
+        else if (*s >= 'a' && *s <= 'f') val = (val << 4) | (*s - 'a' + 10);
+        else break;
+        s++;
+    }
+    return val;
+}
+
+static void op_write_afe_inst(u8 val)
+{
+    REG_8IP_myWrite(REG_OPERANDS + OP_OFF_AFE_INST, val);
+}
+
+static void op_write_addr(u16 val)
+{
+    REG_16IP_myWrite(REG_OPERANDS + OP_OFF_ADDR, val);
+}
+
+static void op_write_scalar(u8 val)
+{
+    REG_8IP_myWrite(REG_OPERANDS + OP_OFF_DATA_SCALAR, val);
+}
+
+static void op_write_array_size(u16 val)
+{
+    REG_16IP_myWrite(REG_OPERANDS + OP_OFF_ARRAY_SIZE, val);
+}
+
+static void op_write_array(const char **args, u32 start_idx, u32 length)
+{
+    for (u32 i = 0; i < length; i++) {
+        u8 byte = (u8)parse_hex(args[start_idx + i]);
+        REG_8IP_myWrite(REG_OPERANDS + OP_OFF_DATA_ARRAY + i, byte);
+    }
+}
+
+static int split_args(char *args_str, const char **arg_out, int max_args)
+{
+    int count = 0;
+    char *tok = strtok(args_str, ",");
+
+    while (tok != NULL && count < max_args) {
+        /* Strip leading whitespace from each argument */
+        while (*tok == ' ' || *tok == '\t') tok++;
+        arg_out[count++] = tok;
+        tok = strtok(NULL, ",");
+    }
+    return count;
+}
+
+int parse_and_store(char *cmd)
+{
+	 if (REG_8IP_myRead(REG_COMMAND) != CMD_IDLE)
+	        return REG_BUSY;
+	 char *open_br = strchr(cmd, '(');
+	     if (!open_br) return WRONG_IP;
+
+	     *open_br         = '\0';
+	     const char *func = cmd;           /* "afeSpiRawWrite"          */
+	     char *args_start = open_br + 1;
+
+	     char *close_br = strchr(args_start, ')');
+	       if (!close_br) return WRONG_IP;
+
+	       *close_br = '\0';
+}

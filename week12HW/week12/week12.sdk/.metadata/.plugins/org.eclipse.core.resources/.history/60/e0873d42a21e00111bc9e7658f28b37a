@@ -1,0 +1,49 @@
+/*
+ * func_desc.h
+ *
+ *  Created on: Mar 13, 2026
+ *      Author: vlsiuser
+ */
+
+#ifndef SRC_USER_LOGIC_FUNC_DESC_H_
+#define SRC_USER_LOGIC_FUNC_DESC_H_
+
+
+#ifndef FUNC_DESCRIPTOR_H
+#define FUNC_DESCRIPTOR_H
+
+#include <stdint.h>
+#include "xil_types.h"
+#include "parser.h"
+
+typedef enum {
+    OPCODE_RAW_WRITE         = 0x01,
+    OPCODE_RAW_READ          = 0x02,
+    OPCODE_BURST_WRITE       = 0x03,
+    OPCODE_BURST_READ        = 0x04,
+    OPCODE_RAW_WRITE_MULTI   = 0x05,
+    OPCODE_RAW_READ_MULTI    = 0x06,
+    OPCODE_BURST_WRITE_MULTI = 0x07,
+    OPCODE_INVALID           = 0xFF
+} spi_opcode_t;
+
+typedef enum {
+    ARG_U8        = 0,
+    ARG_U16       = 1,
+    ARG_U8_PTR   =2
+} arg_type_t;
+
+typedef void (*mapper_fn)(arg_type_t *args);
+
+#define MAX_ARG_TYPES  8
+
+typedef struct {
+    const char   *cmd_name;
+    spi_opcode_t  opcode;
+    int           min_args;
+    arg_type_t    arg_types[MAX_ARG_TYPES];
+    mapper_fn     handler;
+} func_desc_t;
+
+const func_desc_t *lookup_by_opcode(spi_opcode_t  opcode);
+#endif /* SRC_USER_LOGIC_FUNC_DESC_H_ */

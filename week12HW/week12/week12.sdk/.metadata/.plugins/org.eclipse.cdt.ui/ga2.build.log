@@ -1,0 +1,41 @@
+09:52:05 **** Build of configuration Debug for project ga2 ****
+make all 
+Building file: ../src/userlogic/parser.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/userlogic/parser.o" -I../../ga2_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/userlogic/parser.d" -MT"src/userlogic/parser.o" -o "src/userlogic/parser.o" "../src/userlogic/parser.c"
+Finished building: ../src/userlogic/parser.c
+ 
+Building file: ../src/userlogic/uart.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/userlogic/uart.o" -I../../ga2_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/userlogic/uart.d" -MT"src/userlogic/uart.o" -o "src/userlogic/uart.o" "../src/userlogic/uart.c"
+Finished building: ../src/userlogic/uart.c
+ 
+Building file: ../src/corelogic/api.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/corelogic/api.o" -I../../ga2_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/corelogic/api.d" -MT"src/corelogic/api.o" -o "src/corelogic/api.o" "../src/corelogic/api.c"
+Finished building: ../src/corelogic/api.c
+ 
+Building file: ../src/corelogic/executor.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/corelogic/executor.o" -I../../ga2_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/corelogic/executor.d" -MT"src/corelogic/executor.o" -o "src/corelogic/executor.o" "../src/corelogic/executor.c"
+Finished building: ../src/corelogic/executor.c
+ 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -I../../ga2_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: ga2.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ga2_bsp/microblaze_0/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "ga2.elf"  ./src/userlogic/parser.o ./src/userlogic/uart.o  ./src/corelogic/api.o ./src/corelogic/executor.o  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: ga2.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size ga2.elf  |tee "ga2.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  21740	   1392	   4276	  27408	   6b10	ga2.elf
+Finished building: ga2.elf.size
+ 
+
+09:52:05 Build Finished (took 155ms)
+
