@@ -87,9 +87,14 @@ u16 api_afeSpiRawReadMulti_wrapper(volatile u8 *operands) {
     Cmd_spiRawReadMulti_Args_t args;
     memcpy(&args, (const void *)operands, sizeof(args));
 
-    /* Result: single byte at HW_RESULT_BASE — same layout as raw read */
-    Result_spiRawRead_t *result = (Result_spiRawRead_t *)HW_RESULT_BASE;
-    return (u16)afeSpiRawReadMulti(args.afeInstSel, args.addr, &result->readVal);
+    /*
+     * Result layout: [uint8_t afeInstSel][uint8_t readVal[popcount(afeInstSel)]]
+     * Echo afeInstSel so the host can map each result byte back to its SPI device.
+     * The driver writes one byte per set bit in ascending bit order into readVal[].
+     */
+    Result_spiRawReadMulti_t *result = (Result_spiRawReadMulti_t *)HW_RESULT_BASE;
+    result->afeInstSel = args.afeInstSel;
+    return (u16)afeSpiRawReadMulti(args.afeInstSel, args.addr, result->readVal);
 }
 
 /* ------------------------------------------------------------------ */
