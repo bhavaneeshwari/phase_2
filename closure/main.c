@@ -1,3 +1,9 @@
+/**
+ * @file main.c
+ * @author Arvind Prakash T.
+ * @brief Main execution loop and UART command dispatcher.
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include "xil_printf.h"
@@ -11,8 +17,9 @@
 
 #define CMD_BUFFER_SIZE 128
 
-
-
+/**
+ * @brief Displays the available command syntax to the UART terminal.
+ */
 void print_help()
 {
     xil_printf("\r\n--- Command Input Formats (Hex) ---\r\n");
@@ -26,6 +33,10 @@ void print_help()
     xil_printf("-----------------------------------\r\n");
 }
 
+/**
+ * @brief Main execution loop handling command parsing and hardware polling.
+ * @return int Returns 0 on system exit.
+ */
 int main()
 {
     uart_init();
@@ -35,7 +46,6 @@ int main()
 
     while (1)
     {
-
         xil_printf("\r\nCMD> ");
         uart_getline(cmd_buffer, CMD_BUFFER_SIZE);
 
@@ -46,6 +56,7 @@ int main()
         WRITE_STATUS(0x00);
         WRITE_STATUS(0x0000);
         memset((void *)HW_RESULT_BASE, 0, 0x1f);
+        
         parse_and_store(cmd_buffer);
         executor_poll();
 
@@ -58,35 +69,33 @@ int main()
             if (opcode == OPCODE_SPI_RAW_READ) {
                 xil_printf("   -> Result: 0x%02X\r\n", HW_RESULT_BASE[0]);
             }
-           else if (opcode == OPCODE_SPI_RAW_READ_MULTI) {
-    /*
-     * Result layout: [uint8_t afeInstSel][uint8_t readVal[popcount(afeInstSel)]]
-     * Iterate set bits in ascending order — each maps to the next result byte.
-     */
-    Result_spiRawReadMulti_t *result = (Result_spiRawReadMulti_t *)HW_RESULT_BASE;
-    uint8_t instSel = result->afeInstSel;
+            else if (opcode == OPCODE_SPI_RAW_READ_MULTI) {
+                /* Struct Overlay for multi-return results */
+                Result_spiRawReadMulti_t *result = (Result_spiRawReadMulti_t *)HW_RESULT_BASE;
+                uint8_t instSel = result->afeInstSel;
 
-    xil_printf("   -> afeInstSel: 0x%02X\r\n", instSel);
-    int idx = 0;
-    for (int bit = 0; bit < NUM_SPI; bit++) {
-        if (instSel & (1u << bit)) {
-            xil_printf("      SPI[%d]: 0x%02X\r\n", bit, result->readVal[idx]);
-            idx++;
-        }
-    }
-}
+                xil_printf("   -> afeInstSel: 0x%02X\r\n", instSel);
+                int idx = 0;
+                
+                for (int bit = 0; bit < NUM_SPI; bit++) {
+                    if (instSel & (1u << bit)) {
+                        xil_printf("      SPI[%d]: 0x%02X\r\n", bit, result->readVal[idx]);
+                        idx++;
+                    }
+                }
+            }
             else if (opcode == OPCODE_SPI_BURST_READ) {
-            	 uint8_t  *resultBase  = (uint8_t *)HW_RESULT_BASE;
-            	        uint16_t  dataArraySize;
-            	        memcpy(&dataArraySize, resultBase, sizeof(uint16_t));
+                 uint8_t  *resultBase  = (uint8_t *)HW_RESULT_BASE;
+                 uint16_t  dataArraySize;
+                 
+                 memcpy(&dataArraySize, resultBase, sizeof(uint16_t));
 
-            	        xil_printf("   -> Burst Read (%u bytes):\r\n", dataArraySize);
-            	        uint8_t *data = resultBase + sizeof(uint16_t);
-            	        for (uint16_t i = 0; i < dataArraySize; i++) {
-            	            xil_printf("      [%u]: 0x%02X\r\n", i, data[i]);
-            	        }
-            	    }
-
+                 xil_printf("   -> Burst Read (%u bytes):\r\n", dataArraySize);
+                 uint8_t *data = resultBase + sizeof(uint16_t);
+                 for (uint16_t i = 0; i < dataArraySize; i++) {
+                     xil_printf("      [%u]: 0x%02X\r\n", i, data[i]);
+                 }
+            }
         }
         else if (opcode != 0xFF) {
             xil_printf("[MAIN] ERROR: Failed (0x%04X)\r\n", status);
