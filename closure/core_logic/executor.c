@@ -1,7 +1,7 @@
 #include "executor.h"
 #include "../axi_regs.h"
 #include "afe_drivers.h" 
-#include "api_wrapper_packed.h"
+#include "api_wrapper.h"
 
 void executor_poll(void) {
     if (READ_CMD() == 1) {
