@@ -4,6 +4,7 @@
 extern char inbyte(void);
 
 XUartLite Uart;
+//hi
 
 void uart_init(void)
 {
