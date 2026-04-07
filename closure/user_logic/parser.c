@@ -4,7 +4,7 @@
 #include "../axi_regs.h"
 #include "command_dict.h"
 #include "../core_logic/afe_drivers.h"
-#include "../core_logic/api_wrapper_packed.h"
+#include "../core_logic/api_wrapper.h"
 
 void parse_and_store(char *input) {
     if (READ_CMD() != 0) return;
