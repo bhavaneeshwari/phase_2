@@ -55,15 +55,15 @@ int main()
         if (status == TI_AFE_RET_EXEC_PASS) {
             xil_printf("[MAIN] SUCCESS: Opcode 0x%02X\r\n", opcode);
 
-            if (opcode == OPCODE_RAW_READ) {
+            if (opcode == OPCODE_SPI_RAW_READ) {
                 xil_printf("   -> Result: 0x%02X\r\n", HW_RESULT_BASE[0]);
             }
-            else if (opcode == OPCODE_RAW_READ_MULTI) {
+            else if (opcode == OPCODE_SPI_RAW_READ_MULTI) {
                 for (int i = 0; i < NUM_SPI; i++) {
                     xil_printf("      SPI[%d]: 0x%02X\r\n", i, HW_RESULT_BASE[i]);
                 }
             }
-            else if (opcode == OPCODE_BURST_READ) {
+            else if (opcode == OPCODE_SPI_BURST_READ) {
             	 uint8_t  *resultBase  = (uint8_t *)HW_RESULT_BASE;
             	        uint16_t  dataArraySize;
             	        memcpy(&dataArraySize, resultBase, sizeof(uint16_t));
