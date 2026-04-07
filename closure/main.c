@@ -58,11 +58,23 @@ int main()
             if (opcode == OPCODE_SPI_RAW_READ) {
                 xil_printf("   -> Result: 0x%02X\r\n", HW_RESULT_BASE[0]);
             }
-            else if (opcode == OPCODE_SPI_RAW_READ_MULTI) {
-                for (int i = 0; i < NUM_SPI; i++) {
-                    xil_printf("      SPI[%d]: 0x%02X\r\n", i, HW_RESULT_BASE[i]);
-                }
-            }
+           else if (opcode == OPCODE_SPI_RAW_READ_MULTI) {
+    /*
+     * Result layout: [uint8_t afeInstSel][uint8_t readVal[popcount(afeInstSel)]]
+     * Iterate set bits in ascending order — each maps to the next result byte.
+     */
+    Result_spiRawReadMulti_t *result = (Result_spiRawReadMulti_t *)HW_RESULT_BASE;
+    uint8_t instSel = result->afeInstSel;
+
+    xil_printf("   -> afeInstSel: 0x%02X\r\n", instSel);
+    int idx = 0;
+    for (int bit = 0; bit < NUM_SPI; bit++) {
+        if (instSel & (1u << bit)) {
+            xil_printf("      SPI[%d]: 0x%02X\r\n", bit, result->readVal[idx]);
+            idx++;
+        }
+    }
+}
             else if (opcode == OPCODE_SPI_BURST_READ) {
             	 uint8_t  *resultBase  = (uint8_t *)HW_RESULT_BASE;
             	        uint16_t  dataArraySize;
