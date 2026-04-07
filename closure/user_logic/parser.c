@@ -1,3 +1,9 @@
+/**
+ * @file parser.c
+ * @author PSG_TI_TEAM
+ * @brief String-to-Memory hardware command parser.
+ */
+
 #include <string.h>
 #include <stdlib.h>
 #include "parser.h"
@@ -6,6 +12,23 @@
 #include "../core_logic/afe_drivers.h"
 #include "../core_logic/api_wrapper.h"
 
+/**
+ * @brief Parses a UART string and packs the arguments into AXI physical memory.
+ *
+ * @details
+ * This function translates a human-readable ASCII command into a packed, 
+ * bare-metal memory block. 
+ * * Execution Flow:
+ * 1. Validates the command against the Python-generated `cmd_dict` array.
+ * 2. Parses comma-separated hexadecimal string arguments.
+ * 3. Type-casts strings to the appropriate physical byte sizes (U8, U16, U32).
+ * 4. Uses pointer arithmetic (`hw_offset`) to pack data contiguously into 
+ * the `HW_OPERAND_BASE` AXI register space without padding.
+ * 5. Triggers the hardware executor by asserting `WRITE_CMD(1)`.
+ *
+ * @param input The raw ASCII string received from the UART terminal 
+ * (e.g., "spiRawWrite(0x01, 0x4A, 0xFF)").
+ */
 void parse_and_store(char *input) {
     if (READ_CMD() != 0) return;
 
