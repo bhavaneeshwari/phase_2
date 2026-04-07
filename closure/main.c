@@ -2,12 +2,12 @@
 #include <string.h>
 #include "xil_printf.h"
 #include "axi_regs.h"
-#include "user_logic/uart.h"
+#include "interface/uart.h"
 #include "user_logic/parser.h"
 #include "core_logic/executor.h"
 
 #include "core_logic/afe_drivers.h"
-#include "core_logic/api_wrapper_packed.h"
+#include "core_logic/api_wrapper.h"
 
 #define CMD_BUFFER_SIZE 128
 
