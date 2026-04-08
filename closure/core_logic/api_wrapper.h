@@ -17,7 +17,7 @@
 #include <stdint.h>
 
 /** @brief The total number of SPI devices supported on the bus */
-#define NUM_SPI     4                     
+#define NUM_SPI     8
 
 /** @brief The maximum payload size (in bytes) allowed for a single burst transaction */
 #define MAX_BURST_SIZE 64
@@ -103,13 +103,10 @@ typedef struct __attribute__((packed)) {
 
 /** * @brief Return layout for OPCODE_SPI_RAW_READ_MULTI.
  * @details 
- * - Offset 0 (afeInstSel): Echoed back bitmask so host can decode results.
- * - Offset 1 (readVal): Direct Index Mapped array. `readVal[i]` is valid only 
- * if bit `i` is set in `afeInstSel`. Unselected slots are explicitly zeroed.
+
  */
 typedef struct __attribute__((packed)) {
-    uint8_t afeInstSel;             /**< Echoed bitmask for host decoding */
-    uint8_t readVal[NUM_SPI];       /**< Directly mapped array of returned device values */
+    uint8_t readVal[NUM_SPI];
 } Result_spiRawReadMulti_t;
 
 /** * @brief Return layout for OPCODE_SPI_BURST_READ.
