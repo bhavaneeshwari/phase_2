@@ -23,7 +23,7 @@ typedef enum RET_TYPE
 } RetType_e;
 
 /** @brief The total number of physical SPI devices connected to the bus */
-#define NUM_SPI 4
+#define NUM_SPI 8
 
 // --- OFFICIAL DRIVER PROTOTYPES ---
 
